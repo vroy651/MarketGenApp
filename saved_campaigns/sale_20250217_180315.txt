@@ -1,0 +1,5 @@
+```json
+{
+  "fresh_fri_campaign_summary": "Hey there! Get ready for some sizzling savings! 🎉 Fresh Fri is having a fantastic sale on our super convenient 500L cooking oil! 🍳 Perfect for all you amazing cooks in Nairobi and Mombasa aged 25-45!  If you're looking to whip up delicious meals for your family without breaking the bank, this is the deal for you!  Don't miss out on stocking up on your favorite Fresh Fri!"
+}
+```

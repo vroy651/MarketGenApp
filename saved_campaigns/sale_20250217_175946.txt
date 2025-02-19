@@ -1,0 +1,19 @@
+```json
+{
+  "fresh_fri_campaign_summary": "Hey there! Get ready for some sizzling savings! 🎉 Fresh Fri is having a fantastic sale on our super convenient 500L cooking oil! 🍳 Perfect for all you amazing cooks in Nairobi and Mombasa aged 25-45!  If you're looking to whip up delicious meals for your family without breaking the bank, this is the deal for you!  Don't miss out on stocking up on your favorite Fresh Fri!",
+  "pwani_oil_campaign_content": {
+    "headline": "Discover the Goodness of Pwani Oil: Nourishing Your Family, Sustaining Our Planet",
+    "body": "Imagine creating delicious meals that are not only good for your loved ones but also kind to the environment. With Pwani Oil, this vision becomes a reality! We're proud to offer a diverse range of high-quality products – from cooking oils perfect for crispy fries and flavorful stews, to creamy margarines that make baking a dream, and versatile baking fats for all your culinary creations. \n\nAt Pwani Oil, we believe in more than just great taste. We're committed to sustainability, ensuring our products are made with eco-friendly practices from sourcing to production.  We leverage innovative, advanced techniques to bring you healthier options without compromising on quality.  Think of our cooking oils enriching your family's health, our margarines adding that perfect touch to your baked treats, all while knowing you're choosing a brand that cares for the planet. \n\nWhether you're a busy parent preparing everyday meals, a passionate chef experimenting with new recipes, or a dedicated baker crafting delightful treats, Pwani Oil is your trusted partner. We understand the importance of wholesome ingredients and responsible choices. That's why we uphold rigorous quality standards, ensuring every Pwani Oil product delivers superior performance and taste.  \n\nJoin countless families, chefs, and health enthusiasts who trust Pwani Oil for their daily cooking and baking needs. Experience the difference of a brand that prioritizes quality, sustainability, and innovation – all for you and a healthier future.",
+    "call_to_action": "Choose Pwani Oil today and taste the difference quality and care make! Explore our full range of products and discover how we can help you create delicious, healthy, and sustainable meals for every occasion.",
+    "tone": "Warm, informative, and inspiring",
+    "style": "Professional and engaging",
+    "target_audience_resonance": "Appeals to health-conscious individuals, environmentally responsible consumers, families, chefs, and bakers by emphasizing trust, authenticity, and long-term benefits.",
+    "core_values_alignment_summary": "Content consistently highlights Pwani Oil's core values of Quality (superior standards, rigorous testing), Sustainability (eco-friendly sourcing, production, packaging across all products), and Innovation (cutting-edge technology for healthier, efficient, and versatile solutions).",
+    "suitable_formats": [
+      "Social Media Posts (engaging captions and visuals)",
+      "Blog Articles (in-depth exploration of benefits and values)",
+      "Email Newsletters (direct communication with customers)"
+    ]
+  }
+}
+```

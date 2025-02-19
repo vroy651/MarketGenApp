@@ -1,0 +1,27 @@
+```json
+{
+  "socialMediaContent": {
+    "facebook": {
+      "post1": "📢 Calling all amazing ladies in Nairobi and Mombasa aged 25-45! 📢 Winter is coming, and so is the Fresh Fri Winter Sale! 🎉 Stock up on your favorite 500L Fresh Fri cooking oil and get ready to create delicious meals all season long. 😋 This special offer is just for you! Don't miss out! #FreshFriWinterSale #CookingOil #Nairobi #Mombasa #Deals",
+      "post2": "🍳 Winter cooking just got easier (and tastier!) 🍳 Fresh Fri 500L is on SALE! Perfect for all your frying, baking, and roasting needs. Ladies in Nairobi and Mombasa, aged 25-45, this one's for you!  Grab yours today and let the winter feasts begin! 🥳 #FreshFri #WinterDeals #KenyanFood #CookingEssentials #SaleAlert",
+      "imageSuggestion": "Image of a woman happily cooking with Fresh Fri oil, with a winter-themed background and the Fresh Fri 500L bottle prominently displayed."
+    },
+    "twitter": {
+      "tweet1": "Winter Sale alert! 🚨 Ladies 25-45 in Nairobi & Mombasa, Fresh Fri 500L cooking oil is on sale! 🎉 Stock up & cook up a storm this winter! 😋 #FreshFriWinterSale #NairobiDeals #MombasaOffers",
+      "tweet2": "Fresh Fri Winter Sale is HERE! 🥳 Perfect 500L cooking oil for all your winter recipes. Exclusive deal for ladies 25-45 in Nairobi & Mombasa. Don't miss it! #FreshFri #CookingOilSale #WinterCooking",
+      "imageSuggestion": "Short, eye-catching graphic with 'Fresh Fri Winter Sale' and the 500L bottle."
+    },
+    "instagram": {
+      "post1": {
+        "caption": "✨ Winter just got tastier! ✨ Fresh Fri Winter Sale is ON! 🎉 Ladies in Nairobi & Mombasa (25-45), treat yourselves to our 500L cooking oil and make every meal delicious this season. 😋 Link in bio for more info! #FreshFriWinterSale #CookingOil #Nairobi #Mombasa #WinterDeals #Foodie #KenyanFood",
+        "imageSuggestion": "Beautifully styled photo of food cooked with Fresh Fri oil, alongside the 500L bottle and winter decorations. Maybe include a happy woman cooking."
+      },
+      "post2": {
+        "reelCaption": "🔥 Sizzling Winter Deals are here! 🔥 Fresh Fri 500L cooking oil is on sale for all you amazing ladies (25-45) in Nairobi & Mombasa!  Get ready to fry, bake, and roast your way through winter! 🥳 #FreshFri #WinterSale #CookingOilDeals #NairobiMombasa #FoodReel",
+        "reelSuggestion": "Short, engaging video reel showing delicious food being cooked with Fresh Fri, highlighting the 500L bottle and the winter sale message. Use upbeat music and quick cuts."
+      },
+       "storySuggestion": "Interactive story with a poll: 'What's your favorite winter dish to cook with Fresh Fri?'  Include a swipe-up link to find out more about the sale."
+    }
+  }
+}
+```
