@@ -10451,3 +10451,810 @@ Okay, so you need a super catchy campaign for Fresh Fri (500L size), targeting m
 2025-02-19 15:46:23,007 - src.chatbot - INFO - 62104 - 6170079232 - Creating text output with role: assistant
 2025-02-19 15:46:23,007 - src.chatbot - INFO - 62104 - 6170079232 - Creating text output with role: assistant
 2025-02-19 15:46:23,007 - src.chatbot - INFO - 62104 - 6170079232 - Creating text output with role: assistant
+2025-02-19 15:53:55,628 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:53:55,628 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:53:55,628 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:53:55,628 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:53:55,632 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:53:55,632 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:53:55,632 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:53:55,632 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:53:55,741 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:53:55,743 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:53:55,743 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:53:55,743 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:53:55,743 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:53:55,767 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:53:55,767 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:53:55,767 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:53:55,767 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:53:57,562 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:53:57,562 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:53:57,562 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:53:57,562 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:53:57,565 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:53:57,565 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:53:57,565 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:53:57,565 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:53:57,572 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:53:57,572 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:53:57,572 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:53:57,572 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:56:09,869 - rag - INFO - 62104 - 6341865472 - GPU FAISS is not available, using CPU version
+2025-02-19 15:56:09,869 - rag - INFO - 62104 - 6341865472 - GPU FAISS is not available, using CPU version
+2025-02-19 15:56:09,869 - rag - INFO - 62104 - 6341865472 - GPU FAISS is not available, using CPU version
+2025-02-19 15:56:09,869 - rag - INFO - 62104 - 6341865472 - GPU FAISS is not available, using CPU version
+2025-02-19 15:56:09,892 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:56:09,892 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:56:09,892 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:56:09,892 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:56:09,892 - src.chatbot - INFO - 62104 - 6341865472 - Initializing new RAG system
+2025-02-19 15:56:09,893 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:56:09,893 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:56:09,893 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:56:09,893 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:56:09,893 - root - INFO - 62104 - 6341865472 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:56:09,980 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:56:09,980 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:56:09,980 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:56:09,980 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:56:09,980 - src.chatbot - INFO - 62104 - 6341865472 - RAG system instance created successfully
+2025-02-19 15:56:09,981 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:56:09,981 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:56:09,981 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:56:09,981 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:56:09,981 - src.chatbot - INFO - 62104 - 6341865472 - Attempting to load documents from knowledge base
+2025-02-19 15:56:09,983 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:56:09,983 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:56:09,983 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:56:09,983 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:56:09,983 - src.chatbot - INFO - 62104 - 6341865472 - Loaded 1 documents from knowledge base
+2025-02-19 15:56:10,004 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:56:10,004 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:56:10,004 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:56:10,004 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:56:10,004 - rag - INFO - 62104 - 6341865472 - Creating new FAISS index
+2025-02-19 15:56:12,012 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:56:12,012 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:56:12,012 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:56:12,012 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:56:12,012 - httpx - INFO - 62104 - 6341865472 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:56:12,013 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:56:12,013 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:56:12,013 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:56:12,013 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:56:12,013 - rag - ERROR - 62104 - 6341865472 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:56:12,015 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:56:12,015 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:56:12,015 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:56:12,015 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:56:12,015 - src.chatbot - WARNING - 62104 - 6341865472 - Failed to ingest documents into RAG system
+2025-02-19 15:58:31,704 - src.chatbot - INFO - 90686 - 6212595712 - Initializing new RAG system
+2025-02-19 15:58:31,704 - root - INFO - 90686 - 6212595712 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 15:58:31,808 - src.chatbot - INFO - 90686 - 6212595712 - RAG system instance created successfully
+2025-02-19 15:58:31,886 - src.chatbot - INFO - 90686 - 6212595712 - Attempting to load documents from knowledge base
+2025-02-19 15:58:31,887 - src.chatbot - INFO - 90686 - 6212595712 - Loaded 1 documents from knowledge base
+2025-02-19 15:58:31,905 - rag - INFO - 90686 - 6212595712 - Creating new FAISS index
+2025-02-19 15:58:32,688 - httpx - INFO - 90686 - 6212595712 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 15:58:32,691 - rag - ERROR - 90686 - 6212595712 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 125, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 15:58:32,698 - rag - INFO - 90686 - 6212595712 - Loading existing FAISS index from ContentGenApp/faiss_index
+2025-02-19 15:58:32,698 - rag - ERROR - 90686 - 6212595712 - Error loading FAISS index: The de-serialization relies loading a pickle file. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine.You will need to set `allow_dangerous_deserialization` to `True` to enable deserialization. If you do this, make sure that you trust the source of the data. For example, if you are loading a file that you created, and know that no one else has modified the file, then this is safe to do. Do not set this to `True` if you are loading a file from an untrusted source (e.g., some random site on the internet.).
+2025-02-19 15:58:32,698 - src.chatbot - WARNING - 90686 - 6212595712 - Failed to ingest documents and no existing index found
+2025-02-19 16:00:20,829 - rag - INFO - 90686 - 6212595712 - GPU FAISS is not available, using CPU version
+2025-02-19 16:00:20,851 - src.chatbot - INFO - 90686 - 6212595712 - Initializing new RAG system
+2025-02-19 16:00:20,851 - src.chatbot - INFO - 90686 - 6212595712 - Initializing new RAG system
+2025-02-19 16:00:20,852 - root - INFO - 90686 - 6212595712 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 16:00:20,852 - root - INFO - 90686 - 6212595712 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 16:00:20,955 - src.chatbot - INFO - 90686 - 6212595712 - RAG system instance created successfully
+2025-02-19 16:00:20,955 - src.chatbot - INFO - 90686 - 6212595712 - RAG system instance created successfully
+2025-02-19 16:00:20,956 - src.chatbot - INFO - 90686 - 6212595712 - Attempting to load documents from knowledge base
+2025-02-19 16:00:20,956 - src.chatbot - INFO - 90686 - 6212595712 - Attempting to load documents from knowledge base
+2025-02-19 16:00:20,957 - src.chatbot - INFO - 90686 - 6212595712 - Loaded 1 documents from knowledge base
+2025-02-19 16:00:20,957 - src.chatbot - INFO - 90686 - 6212595712 - Loaded 1 documents from knowledge base
+2025-02-19 16:00:20,976 - rag - INFO - 90686 - 6212595712 - Creating new FAISS index
+2025-02-19 16:00:20,976 - rag - INFO - 90686 - 6212595712 - Creating new FAISS index
+2025-02-19 16:00:21,777 - httpx - INFO - 90686 - 6212595712 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 16:00:21,777 - httpx - INFO - 90686 - 6212595712 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 16:00:21,779 - rag - ERROR - 90686 - 6212595712 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 132, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 16:00:21,779 - rag - ERROR - 90686 - 6212595712 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 132, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 16:00:21,783 - rag - INFO - 90686 - 6212595712 - Loading existing FAISS index from ContentGenApp/faiss_index
+2025-02-19 16:00:21,783 - rag - INFO - 90686 - 6212595712 - Loading existing FAISS index from ContentGenApp/faiss_index
+2025-02-19 16:00:21,800 - rag - INFO - 90686 - 6212595712 - FAISS index loaded successfully
+2025-02-19 16:00:21,800 - rag - INFO - 90686 - 6212595712 - FAISS index loaded successfully
+2025-02-19 16:00:21,800 - src.chatbot - INFO - 90686 - 6212595712 - Loaded existing FAISS index as fallback
+2025-02-19 16:00:21,800 - src.chatbot - INFO - 90686 - 6212595712 - Loaded existing FAISS index as fallback
+2025-02-19 16:00:30,427 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:30,427 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:35,231 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:35,231 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:43,510 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:43,510 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:47,034 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:47,034 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:00:47,044 - root - INFO - 90686 - 6212595712 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:00:47,044 - root - INFO - 90686 - 6212595712 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:00:47,109 - root - INFO - 90686 - 6212595712 - Initializing workflow with RAG enabled: True
+2025-02-19 16:00:47,109 - root - INFO - 90686 - 6212595712 - Initializing workflow with RAG enabled: True
+2025-02-19 16:00:47,151 - root - INFO - 90686 - 6212595712 - Querying RAG system with context:
+Brand: Fresh Fri
+Product: 500L
+Category: Cooking Oil
+2025-02-19 16:00:47,151 - root - INFO - 90686 - 6212595712 - Querying RAG system with context:
+Brand: Fresh Fri
+Product: 500L
+Category: Cooking Oil
+2025-02-19 16:00:47,152 - rag - WARNING - 90686 - 6212595712 - No documents have been ingested yet.
+2025-02-19 16:00:47,152 - rag - WARNING - 90686 - 6212595712 - No documents have been ingested yet.
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - Cached RAG context for key: Fresh Fri_500L_Cooking Oil
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - Cached RAG context for key: Fresh Fri_500L_Cooking Oil
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - RAG context retrieved:
+
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - RAG context retrieved:
+
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - Generating content with state variables:
+{'campaign_name': 'Sale', 'promotion_link': '', 'previous_campaign_reference': '', 'sku': '500L', 'product_category': 'Cooking Oil', 'campaign_date_range': '', 'age_range': '25-45', 'gender': 'Female', 'income_level': 'Middle', 'region': 'Nairobi, Mombasa', 'urban_rural': 'Urban', 'specific_instructions': '', 'brand': 'Fresh Fri', 'tone_style': 'Professional', 'search_results': None, 'template_type': 'Custom Campaign', 'output_format': 'Text', 'rag_context_str': ''}
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - Generating content with state variables:
+{'campaign_name': 'Sale', 'promotion_link': '', 'previous_campaign_reference': '', 'sku': '500L', 'product_category': 'Cooking Oil', 'campaign_date_range': '', 'age_range': '25-45', 'gender': 'Female', 'income_level': 'Middle', 'region': 'Nairobi, Mombasa', 'urban_rural': 'Urban', 'specific_instructions': '', 'brand': 'Fresh Fri', 'tone_style': 'Professional', 'search_results': None, 'template_type': 'Custom Campaign', 'output_format': 'Text', 'rag_context_str': ''}
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - Performing web search with query: pwani's oil, fresh fri
+2025-02-19 16:00:47,152 - root - INFO - 90686 - 6212595712 - Performing web search with query: pwani's oil, fresh fri
+2025-02-19 16:00:48,195 - primp - INFO - 90686 - 6212595712 - response: https://html.duckduckgo.com/html 200 43746
+2025-02-19 16:00:48,195 - primp - INFO - 90686 - 6212595712 - response: https://html.duckduckgo.com/html 200 43746
+2025-02-19 16:00:48,203 - root - INFO - 90686 - 6212595712 - Search Results:
+2025-02-19 16:00:48,203 - root - INFO - 90686 - 6212595712 - Search Results:
+2025-02-19 16:00:48,203 - root - INFO - 90686 - 6212595712 - --------------------------------------------------
+2025-02-19 16:00:48,203 - root - INFO - 90686 - 6212595712 - --------------------------------------------------
+2025-02-19 16:00:48,204 - root - INFO - 90686 - 6212595712 - The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... Pwani Oil is a modern state of the art factory at Kikambala, Kilifi, with a capacity to refine over 1000 metric tonnes of oil a day, prepared to the highest international standards. Each day, we strive to embody an organization that 'Refines Lives,' ceaselessly crafting products of unparalleled quality, delivering boundless value to those we serve. The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Keeping Your Business in Mind. Likes ; Followers ; Subscribers ; Followers ; Likes ; Followers ; ... KNDI, Pwani Oil's Fresh Fri Organize Nutrition camp for 1500 Machakos Families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ...
+2025-02-19 16:00:48,204 - root - INFO - 90686 - 6212595712 - The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... Pwani Oil is a modern state of the art factory at Kikambala, Kilifi, with a capacity to refine over 1000 metric tonnes of oil a day, prepared to the highest international standards. Each day, we strive to embody an organization that 'Refines Lives,' ceaselessly crafting products of unparalleled quality, delivering boundless value to those we serve. The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Keeping Your Business in Mind. Likes ; Followers ; Subscribers ; Followers ; Likes ; Followers ; ... KNDI, Pwani Oil's Fresh Fri Organize Nutrition camp for 1500 Machakos Families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ...
+2025-02-19 16:00:48,204 - root - INFO - 90686 - 6212595712 - --------------------------------------------------
+2025-02-19 16:00:48,204 - root - INFO - 90686 - 6212595712 - --------------------------------------------------
+2025-02-19 16:00:53,658 - root - INFO - 90686 - 6212595712 - Generated content:
+Okay, so you want a super quick, snappy campaign for Fresh Fri cooking oil (the 500L size), targeting middle-income, urban women (25-45) in Nairobi and Mombasa? Let's make it fun and relatable! Here's the vibe:
+
+"Hey Mamas! 👋 Level up your kitchen game without breaking the bank! ✨ Fresh Fri (500L) is on SALE! 🎉 We're talking that *golden*, delicious goodness for all your family favorites. Fresh Fri? Always top quality – it fries crisper, lasts longer, and is made with your family's health in mind. Plus, we're doing our bit for the planet with responsible sourcing!🌍 Don't miss out! Grab your Fresh Fri 500L *now* and make mealtime magic! ✨ #FreshFriSale #CookingOil #KenyanFoodie #HealthyEating #SustainableLiving #Nairobi #Mombasa #MamaKnowsBest"
+
+It is short, friendly, and highlights the sale, quality, health benefits (without overdoing it), and a touch of sustainability. The hashtags cover all the bases! This feels more like a real, relatable social media post than a stiff advertisement. It is under 100 words.
+2025-02-19 16:00:53,658 - root - INFO - 90686 - 6212595712 - Generated content:
+Okay, so you want a super quick, snappy campaign for Fresh Fri cooking oil (the 500L size), targeting middle-income, urban women (25-45) in Nairobi and Mombasa? Let's make it fun and relatable! Here's the vibe:
+
+"Hey Mamas! 👋 Level up your kitchen game without breaking the bank! ✨ Fresh Fri (500L) is on SALE! 🎉 We're talking that *golden*, delicious goodness for all your family favorites. Fresh Fri? Always top quality – it fries crisper, lasts longer, and is made with your family's health in mind. Plus, we're doing our bit for the planet with responsible sourcing!🌍 Don't miss out! Grab your Fresh Fri 500L *now* and make mealtime magic! ✨ #FreshFriSale #CookingOil #KenyanFoodie #HealthyEating #SustainableLiving #Nairobi #Mombasa #MamaKnowsBest"
+
+It is short, friendly, and highlights the sale, quality, health benefits (without overdoing it), and a touch of sustainability. The hashtags cover all the bases! This feels more like a real, relatable social media post than a stiff advertisement. It is under 100 words.
+2025-02-19 16:00:53,660 - src.chatbot - INFO - 90686 - 6212595712 - Creating text output with role: assistant
+2025-02-19 16:00:53,660 - src.chatbot - INFO - 90686 - 6212595712 - Creating text output with role: assistant
+2025-02-19 16:00:53,660 - src.chatbot - INFO - 90686 - 6212595712 - Creating summary output with role: assistant
+2025-02-19 16:00:53,660 - src.chatbot - INFO - 90686 - 6212595712 - Creating summary output with role: assistant
+2025-02-19 16:00:53,661 - root - INFO - 90686 - 6212595712 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:00:53,661 - root - INFO - 90686 - 6212595712 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:03:26,503 - rag - INFO - 90686 - 6212595712 - GPU FAISS is not available, using CPU version
+2025-02-19 16:03:26,503 - rag - INFO - 90686 - 6212595712 - GPU FAISS is not available, using CPU version
+2025-02-19 16:03:26,522 - src.chatbot - INFO - 90686 - 6212595712 - Initializing new RAG system
+2025-02-19 16:03:26,522 - src.chatbot - INFO - 90686 - 6212595712 - Initializing new RAG system
+2025-02-19 16:03:26,522 - src.chatbot - INFO - 90686 - 6212595712 - Initializing new RAG system
+2025-02-19 16:03:26,522 - root - INFO - 90686 - 6212595712 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 16:03:26,522 - root - INFO - 90686 - 6212595712 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 16:03:26,522 - root - INFO - 90686 - 6212595712 - Initializing OpenAI model: gpt-4-turbo-preview
+2025-02-19 16:03:26,693 - rag - WARNING - 90686 - 6212595712 - Failed to initialize Tavily search: 4 validation errors for TavilySearchAPIWrapper
+k
+  Extra inputs are not permitted [type=extra_forbidden, input_value=5, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+include_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=['pwanioil.com', 'wikiped...'business-standard.com'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+exclude_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+search_depth
+  Extra inputs are not permitted [type=extra_forbidden, input_value='advanced', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+2025-02-19 16:03:26,693 - rag - WARNING - 90686 - 6212595712 - Failed to initialize Tavily search: 4 validation errors for TavilySearchAPIWrapper
+k
+  Extra inputs are not permitted [type=extra_forbidden, input_value=5, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+include_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=['pwanioil.com', 'wikiped...'business-standard.com'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+exclude_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+search_depth
+  Extra inputs are not permitted [type=extra_forbidden, input_value='advanced', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+2025-02-19 16:03:26,693 - rag - WARNING - 90686 - 6212595712 - Failed to initialize Tavily search: 4 validation errors for TavilySearchAPIWrapper
+k
+  Extra inputs are not permitted [type=extra_forbidden, input_value=5, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+include_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=['pwanioil.com', 'wikiped...'business-standard.com'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+exclude_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+search_depth
+  Extra inputs are not permitted [type=extra_forbidden, input_value='advanced', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+2025-02-19 16:03:26,694 - src.chatbot - INFO - 90686 - 6212595712 - RAG system instance created successfully
+2025-02-19 16:03:26,694 - src.chatbot - INFO - 90686 - 6212595712 - RAG system instance created successfully
+2025-02-19 16:03:26,694 - src.chatbot - INFO - 90686 - 6212595712 - RAG system instance created successfully
+2025-02-19 16:03:26,694 - src.chatbot - INFO - 90686 - 6212595712 - Attempting to load documents from knowledge base
+2025-02-19 16:03:26,694 - src.chatbot - INFO - 90686 - 6212595712 - Attempting to load documents from knowledge base
+2025-02-19 16:03:26,694 - src.chatbot - INFO - 90686 - 6212595712 - Attempting to load documents from knowledge base
+2025-02-19 16:03:26,695 - src.chatbot - INFO - 90686 - 6212595712 - Loaded 1 documents from knowledge base
+2025-02-19 16:03:26,695 - src.chatbot - INFO - 90686 - 6212595712 - Loaded 1 documents from knowledge base
+2025-02-19 16:03:26,695 - src.chatbot - INFO - 90686 - 6212595712 - Loaded 1 documents from knowledge base
+2025-02-19 16:03:26,718 - rag - INFO - 90686 - 6212595712 - Creating new FAISS index
+2025-02-19 16:03:26,718 - rag - INFO - 90686 - 6212595712 - Creating new FAISS index
+2025-02-19 16:03:26,718 - rag - INFO - 90686 - 6212595712 - Creating new FAISS index
+2025-02-19 16:03:27,565 - httpx - INFO - 90686 - 6212595712 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 16:03:27,565 - httpx - INFO - 90686 - 6212595712 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 16:03:27,565 - httpx - INFO - 90686 - 6212595712 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+2025-02-19 16:03:27,573 - rag - ERROR - 90686 - 6212595712 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 142, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 16:03:27,573 - rag - ERROR - 90686 - 6212595712 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 142, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 16:03:27,573 - rag - ERROR - 90686 - 6212595712 - Error ingesting documents: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Traceback (most recent call last):
+  File "/Users/vishalroy/Downloads/Pwani_Content_App/src/rag.py", line 142, in ingest_documents
+    self.vector_store = FAISS.from_documents(texts, self.embedding_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_core/vectorstores/base.py", line 843, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_community/vectorstores/faiss.py", line 1043, in from_texts
+    embeddings = embedding.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 588, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/langchain_openai/embeddings/base.py", line 483, in _get_len_safe_embeddings
+    response = self.client.create(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/resources/embeddings.py", line 125, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/vishalroy/Downloads/ContentGenApp/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-xxxxx***************************************xxxx. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-02-19 16:03:27,575 - rag - INFO - 90686 - 6212595712 - Loading existing FAISS index from ContentGenApp/faiss_index
+2025-02-19 16:03:27,575 - rag - INFO - 90686 - 6212595712 - Loading existing FAISS index from ContentGenApp/faiss_index
+2025-02-19 16:03:27,575 - rag - INFO - 90686 - 6212595712 - Loading existing FAISS index from ContentGenApp/faiss_index
+2025-02-19 16:03:27,594 - rag - INFO - 90686 - 6212595712 - FAISS index loaded successfully
+2025-02-19 16:03:27,594 - rag - INFO - 90686 - 6212595712 - FAISS index loaded successfully
+2025-02-19 16:03:27,594 - rag - INFO - 90686 - 6212595712 - FAISS index loaded successfully
+2025-02-19 16:03:27,595 - src.chatbot - INFO - 90686 - 6212595712 - Loaded existing FAISS index as fallback
+2025-02-19 16:03:27,595 - src.chatbot - INFO - 90686 - 6212595712 - Loaded existing FAISS index as fallback
+2025-02-19 16:03:27,595 - src.chatbot - INFO - 90686 - 6212595712 - Loaded existing FAISS index as fallback
+2025-02-19 16:03:32,210 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:03:32,210 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:03:32,210 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:03:47,857 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:03:47,857 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:03:47,857 - src.chatbot - INFO - 90686 - 6212595712 - Using existing RAG system from session state
+2025-02-19 16:03:50,894 - src.chatbot - INFO - 90686 - 6263648256 - Using existing RAG system from session state
+2025-02-19 16:03:50,894 - src.chatbot - INFO - 90686 - 6263648256 - Using existing RAG system from session state
+2025-02-19 16:03:50,894 - src.chatbot - INFO - 90686 - 6263648256 - Using existing RAG system from session state
+2025-02-19 16:03:50,898 - root - INFO - 90686 - 6263648256 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:03:50,898 - root - INFO - 90686 - 6263648256 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:03:50,898 - root - INFO - 90686 - 6263648256 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:03:50,910 - root - INFO - 90686 - 6263648256 - Initializing workflow with RAG enabled: True
+2025-02-19 16:03:50,910 - root - INFO - 90686 - 6263648256 - Initializing workflow with RAG enabled: True
+2025-02-19 16:03:50,910 - root - INFO - 90686 - 6263648256 - Initializing workflow with RAG enabled: True
+2025-02-19 16:03:50,965 - rag - WARNING - 90686 - 6263648256 - Failed to initialize Tavily search: 4 validation errors for TavilySearchAPIWrapper
+k
+  Extra inputs are not permitted [type=extra_forbidden, input_value=5, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+include_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=['pwanioil.com', 'wikiped...'business-standard.com'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+exclude_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+search_depth
+  Extra inputs are not permitted [type=extra_forbidden, input_value='advanced', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+2025-02-19 16:03:50,965 - rag - WARNING - 90686 - 6263648256 - Failed to initialize Tavily search: 4 validation errors for TavilySearchAPIWrapper
+k
+  Extra inputs are not permitted [type=extra_forbidden, input_value=5, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+include_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=['pwanioil.com', 'wikiped...'business-standard.com'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+exclude_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+search_depth
+  Extra inputs are not permitted [type=extra_forbidden, input_value='advanced', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+2025-02-19 16:03:50,965 - rag - WARNING - 90686 - 6263648256 - Failed to initialize Tavily search: 4 validation errors for TavilySearchAPIWrapper
+k
+  Extra inputs are not permitted [type=extra_forbidden, input_value=5, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+include_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=['pwanioil.com', 'wikiped...'business-standard.com'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+exclude_domains
+  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+search_depth
+  Extra inputs are not permitted [type=extra_forbidden, input_value='advanced', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/extra_forbidden
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Querying RAG system with context:
+Brand: Fresh Fri
+Product: 500L
+Category: Cooking Oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Querying RAG system with context:
+Brand: Fresh Fri
+Product: 500L
+Category: Cooking Oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Querying RAG system with context:
+Brand: Fresh Fri
+Product: 500L
+Category: Cooking Oil
+2025-02-19 16:03:50,968 - rag - WARNING - 90686 - 6263648256 - No documents have been ingested yet.
+2025-02-19 16:03:50,968 - rag - WARNING - 90686 - 6263648256 - No documents have been ingested yet.
+2025-02-19 16:03:50,968 - rag - WARNING - 90686 - 6263648256 - No documents have been ingested yet.
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Cached RAG context for key: Fresh Fri_500L_Cooking Oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Cached RAG context for key: Fresh Fri_500L_Cooking Oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Cached RAG context for key: Fresh Fri_500L_Cooking Oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - RAG context retrieved:
+
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - RAG context retrieved:
+
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - RAG context retrieved:
+
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Generating content with state variables:
+{'campaign_name': 'Sale', 'promotion_link': '', 'previous_campaign_reference': '', 'sku': '500L', 'product_category': 'Cooking Oil', 'campaign_date_range': '', 'age_range': '25-45', 'gender': 'Female', 'income_level': 'Middle', 'region': 'Nairobi, Mombasa', 'urban_rural': 'Urban', 'specific_instructions': '', 'brand': 'Fresh Fri', 'tone_style': 'Professional', 'search_results': None, 'template_type': 'Custom Campaign', 'output_format': 'Text', 'rag_context_str': ''}
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Generating content with state variables:
+{'campaign_name': 'Sale', 'promotion_link': '', 'previous_campaign_reference': '', 'sku': '500L', 'product_category': 'Cooking Oil', 'campaign_date_range': '', 'age_range': '25-45', 'gender': 'Female', 'income_level': 'Middle', 'region': 'Nairobi, Mombasa', 'urban_rural': 'Urban', 'specific_instructions': '', 'brand': 'Fresh Fri', 'tone_style': 'Professional', 'search_results': None, 'template_type': 'Custom Campaign', 'output_format': 'Text', 'rag_context_str': ''}
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Generating content with state variables:
+{'campaign_name': 'Sale', 'promotion_link': '', 'previous_campaign_reference': '', 'sku': '500L', 'product_category': 'Cooking Oil', 'campaign_date_range': '', 'age_range': '25-45', 'gender': 'Female', 'income_level': 'Middle', 'region': 'Nairobi, Mombasa', 'urban_rural': 'Urban', 'specific_instructions': '', 'brand': 'Fresh Fri', 'tone_style': 'Professional', 'search_results': None, 'template_type': 'Custom Campaign', 'output_format': 'Text', 'rag_context_str': ''}
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Performing web search with query: fresh fri ,  pwani's oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Performing web search with query: fresh fri ,  pwani's oil
+2025-02-19 16:03:50,968 - root - INFO - 90686 - 6263648256 - Performing web search with query: fresh fri ,  pwani's oil
+2025-02-19 16:03:52,348 - primp - INFO - 90686 - 6263648256 - response: https://html.duckduckgo.com/html 200 43429
+2025-02-19 16:03:52,348 - primp - INFO - 90686 - 6263648256 - response: https://html.duckduckgo.com/html 200 43429
+2025-02-19 16:03:52,348 - primp - INFO - 90686 - 6263648256 - response: https://html.duckduckgo.com/html 200 43429
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - Search Results:
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - Search Results:
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - Search Results:
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - --------------------------------------------------
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - --------------------------------------------------
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - --------------------------------------------------
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counselling to empower families ... Vegetable oil is the mainstream cooking oil type in Kenya, and obviously it exists in a myriad of brands. ... offering added nutritional benefits for those seeking a healthier option. Fresh Fri is processed by Pwani Oils Products. 2. Kimbo Premium. Kimbo Premium vegetable oil distinguishes itself by offering a wide range of sizes, including 0.3 ... Pwani Oil is a modern state of the art factory at Kikambala, Kilifi, with a capacity to refine over 1000 metric tonnes of oil a day, prepared to the highest international standards. Each day, we strive to embody an organization that 'Refines Lives,' ceaselessly crafting products of unparalleled quality, delivering boundless value to those we serve.
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counselling to empower families ... Vegetable oil is the mainstream cooking oil type in Kenya, and obviously it exists in a myriad of brands. ... offering added nutritional benefits for those seeking a healthier option. Fresh Fri is processed by Pwani Oils Products. 2. Kimbo Premium. Kimbo Premium vegetable oil distinguishes itself by offering a wide range of sizes, including 0.3 ... Pwani Oil is a modern state of the art factory at Kikambala, Kilifi, with a capacity to refine over 1000 metric tonnes of oil a day, prepared to the highest international standards. Each day, we strive to embody an organization that 'Refines Lives,' ceaselessly crafting products of unparalleled quality, delivering boundless value to those we serve.
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counseling to empower families ... The initiative was spearheaded by Pwani Oil's renowned Fresh Fri brand of vegetable cooking oil, which was endorsed by the KNDI in 2023. Leveraging this endorsement, the Fresh Fri camp provided attendees with personalized consultations from expert nutritionists and dieticians, offering invaluable education and counselling to empower families ... Vegetable oil is the mainstream cooking oil type in Kenya, and obviously it exists in a myriad of brands. ... offering added nutritional benefits for those seeking a healthier option. Fresh Fri is processed by Pwani Oils Products. 2. Kimbo Premium. Kimbo Premium vegetable oil distinguishes itself by offering a wide range of sizes, including 0.3 ... Pwani Oil is a modern state of the art factory at Kikambala, Kilifi, with a capacity to refine over 1000 metric tonnes of oil a day, prepared to the highest international standards. Each day, we strive to embody an organization that 'Refines Lives,' ceaselessly crafting products of unparalleled quality, delivering boundless value to those we serve.
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - --------------------------------------------------
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - --------------------------------------------------
+2025-02-19 16:03:52,357 - root - INFO - 90686 - 6263648256 - --------------------------------------------------
+2025-02-19 16:03:58,048 - root - INFO - 90686 - 6263648256 - Generated content:
+Okay, so you want a super catchy campaign for Fresh Fri cooking oil, targeting moms in Nairobi and Mombasa, right? Let's make it *pop*!
+
+"Hey Mamas! 👋 Level up your kitchen game with Fresh Fri! ✨ We're talking *seriously* good quality oil – golden, pure, and makes everything taste amazing. Plus, we're all about keeping things healthy for your family. Fresh Fri is made with care, so you can feel good about what you're cooking. 😉 This 500L bottle is on SALE, so it's the perfect time to stock up! Don't miss out – grab yours and make those mealtimes magical! ✨ #FreshFri #CookingOil #HealthyEating #NairobiMums #MombasaMums #KitchenGoals #Foodie #Sale"
+Another shorter version:
+
+"Moms of Nairobi & Mombasa! ✨ Golden, delicious, and *healthy* meals start with Fresh Fri! Our 500L bottle is on SALE – the perfect excuse to make your family's favorites. We use only the best, so you can cook with confidence. ❤️ Grab yours today and taste the difference! #FreshFri #CookingOilSale #Nairobi #Mombasa #HealthyCooking #FamilyMeals"
+2025-02-19 16:03:58,048 - root - INFO - 90686 - 6263648256 - Generated content:
+Okay, so you want a super catchy campaign for Fresh Fri cooking oil, targeting moms in Nairobi and Mombasa, right? Let's make it *pop*!
+
+"Hey Mamas! 👋 Level up your kitchen game with Fresh Fri! ✨ We're talking *seriously* good quality oil – golden, pure, and makes everything taste amazing. Plus, we're all about keeping things healthy for your family. Fresh Fri is made with care, so you can feel good about what you're cooking. 😉 This 500L bottle is on SALE, so it's the perfect time to stock up! Don't miss out – grab yours and make those mealtimes magical! ✨ #FreshFri #CookingOil #HealthyEating #NairobiMums #MombasaMums #KitchenGoals #Foodie #Sale"
+Another shorter version:
+
+"Moms of Nairobi & Mombasa! ✨ Golden, delicious, and *healthy* meals start with Fresh Fri! Our 500L bottle is on SALE – the perfect excuse to make your family's favorites. We use only the best, so you can cook with confidence. ❤️ Grab yours today and taste the difference! #FreshFri #CookingOilSale #Nairobi #Mombasa #HealthyCooking #FamilyMeals"
+2025-02-19 16:03:58,048 - root - INFO - 90686 - 6263648256 - Generated content:
+Okay, so you want a super catchy campaign for Fresh Fri cooking oil, targeting moms in Nairobi and Mombasa, right? Let's make it *pop*!
+
+"Hey Mamas! 👋 Level up your kitchen game with Fresh Fri! ✨ We're talking *seriously* good quality oil – golden, pure, and makes everything taste amazing. Plus, we're all about keeping things healthy for your family. Fresh Fri is made with care, so you can feel good about what you're cooking. 😉 This 500L bottle is on SALE, so it's the perfect time to stock up! Don't miss out – grab yours and make those mealtimes magical! ✨ #FreshFri #CookingOil #HealthyEating #NairobiMums #MombasaMums #KitchenGoals #Foodie #Sale"
+Another shorter version:
+
+"Moms of Nairobi & Mombasa! ✨ Golden, delicious, and *healthy* meals start with Fresh Fri! Our 500L bottle is on SALE – the perfect excuse to make your family's favorites. We use only the best, so you can cook with confidence. ❤️ Grab yours today and taste the difference! #FreshFri #CookingOilSale #Nairobi #Mombasa #HealthyCooking #FamilyMeals"
+2025-02-19 16:03:58,049 - src.chatbot - INFO - 90686 - 6263648256 - Creating text output with role: assistant
+2025-02-19 16:03:58,049 - src.chatbot - INFO - 90686 - 6263648256 - Creating text output with role: assistant
+2025-02-19 16:03:58,049 - src.chatbot - INFO - 90686 - 6263648256 - Creating text output with role: assistant
+2025-02-19 16:03:58,049 - src.chatbot - INFO - 90686 - 6263648256 - Creating summary output with role: assistant
+2025-02-19 16:03:58,049 - src.chatbot - INFO - 90686 - 6263648256 - Creating summary output with role: assistant
+2025-02-19 16:03:58,049 - src.chatbot - INFO - 90686 - 6263648256 - Creating summary output with role: assistant
+2025-02-19 16:03:58,049 - root - INFO - 90686 - 6263648256 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:03:58,049 - root - INFO - 90686 - 6263648256 - Initializing Google model: gemini-2.0-pro-exp-02-05
+2025-02-19 16:03:58,049 - root - INFO - 90686 - 6263648256 - Initializing Google model: gemini-2.0-pro-exp-02-05

@@ -46,7 +46,7 @@ class RAGSystemConfig(BaseModel):
     bm25_weight: float = Field(0.3, description="Weight for BM25 retriever")
     vector_weight: float = Field(0.7, description="Weight for vector retriever")
     index_path: str = Field("ContentGenApp/faiss_index", description="Path to save/load FAISS index")
-    knowledge_base_path: str = Field("/Users/vishalroy/Downloads/Pwani_Content_App/cleaned_cleaned_output.txt", description="path to knowledge base")
+    knowledge_base_path: str = Field("cleaned_cleaned_output.txt", description="path to knowledge base")
     use_summary_memory: bool = Field(False, description="Whether to use ConversationSummaryBufferMemory instead of ConversationBufferMemory")
     max_token_limit: int = Field(3000, description="Max token limit for summary memory (if used)")  # Add a max_token_limit
     use_tavily_search: bool = Field(True, description="Whether to use Tavily search instead of DuckDuckGo")
@@ -57,7 +57,14 @@ class RAGSystem:
 
     def __init__(self, llm, embedding_model=None, openai_api_key=None, config: Optional[RAGSystemConfig] = None):
         self.llm = llm
-        self.embedding_model = embedding_model or OpenAIEmbeddings(openai_api_key=openai_api_key)
+        try:
+            self.embedding_model = embedding_model or OpenAIEmbeddings(openai_api_key=openai_api_key)
+        except Exception as e:
+            logger.warning(f"Failed to initialize OpenAI embeddings: {e}")
+            # Try to load existing index first
+            self._load_existing_index()
+            if not self.vector_store:
+                raise
         self.config = config or RAGSystemConfig()
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=self.config.chunk_size,
@@ -67,8 +74,18 @@ class RAGSystem:
         self.index_path = self.config.index_path
         self.knowledge_base_path = self.config.knowledge_base_path
         
-        # Initialize Tavily search
-        self.tavily_search = TavilySearchAPIWrapper()
+        # Initialize Tavily search with enhanced configuration
+        try:
+            self.tavily_search = TavilySearchAPIWrapper(
+                k=5,  # Number of search results to return
+                include_domains=["pwanioil.com", "wikipedia.org", "business-standard.com"],  # Relevant domains
+                exclude_domains=[],  # Domains to exclude
+                search_depth="advanced"  # Use advanced search for better results
+            )
+            logger.info("Tavily search initialized successfully")
+        except Exception as e:
+            logger.warning(f"Failed to initialize Tavily search: {e}")
+            self.tavily_search = None
 
         if self.config.use_summary_memory:
             self.memory = ConversationSummaryBufferMemory(
@@ -90,7 +107,7 @@ class RAGSystem:
         try:
             if os.path.exists(os.path.join(self.index_path, "index.faiss")):
                 logger.info(f"Loading existing FAISS index from {self.index_path}")
-                self.vector_store = FAISS.load_local(self.index_path, self.embedding_model)
+                self.vector_store = FAISS.load_local(self.index_path, self.embedding_model, allow_dangerous_deserialization=True)
                 logger.info("FAISS index loaded successfully")
             else:
                 logger.info("No existing FAISS index found")
@@ -151,16 +168,29 @@ class RAGSystem:
         weights = [self.config.bm25_weight * 0.8, self.config.vector_weight * 0.8]
 
         if use_web_search:
-            if self.config.use_tavily_search:
-                # Use Tavily search for more accurate results
-                logger.info(f"Using Tavily search for web retrieval")
-                web_search = lambda q: [
-                    Document(page_content=(
-                        logger.info(f"Tavily search query: {q}") or
-                        logger.info(f"Tavily search result: {self.tavily_search.run(q)}") or
-                        self.tavily_search.run(q)
-                    ))
-                ]
+            if self.config.use_tavily_search and self.tavily_search:
+                # Use Tavily search with enhanced error handling and result processing
+                logger.info("Using Tavily search for web retrieval")
+                def web_search(q):
+                    try:
+                        # Enhance search query with context
+                        enhanced_query = f"Pwani Oil {q}"
+                        logger.info(f"Enhanced Tavily search query: {enhanced_query}")
+                        
+                        # Get search results
+                        results = self.tavily_search.run(enhanced_query)
+                        logger.info(f"Tavily search results received: {len(str(results))} chars")
+                        
+                        # Process and structure the results
+                        if isinstance(results, str):
+                            return [Document(page_content=results)]
+                        elif isinstance(results, dict) and 'text' in results:
+                            return [Document(page_content=results['text'])]
+                        else:
+                            return [Document(page_content=str(results))]
+                    except Exception as e:
+                        logger.error(f"Tavily search error: {e}")
+                        return [Document(page_content="Search failed")]
             else:
                 # Fallback to DuckDuckGo
                 logger.info("Falling back to DuckDuckGo search")

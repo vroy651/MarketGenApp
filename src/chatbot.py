@@ -17,7 +17,7 @@ from pydantic import BaseModel, Field, ValidationError
 from src.chat_history import ChatHistory
 import random  # Added for typing simulation
 from faker import Faker  # For generating realistic-looking example data
-
+import os
 # Configure basic logging (this is fine as is)
 logging.basicConfig(
     level=logging.INFO,
@@ -178,40 +178,40 @@ class ChatbotOutput(BaseModel):
 
         return "\n".join(output)
 
-    # def render_email(self) -> str:
-    #     if not self.email_content:
-    #         return "No email content available."
+    def render_email(self) -> str:
+        if not self.email_content:
+            return "No email content available."
 
-    #     content = self.email_content
-    #     output = [
-    #         "**Email Campaign: [Campaign Name/Description]**\n",
-    #         f"*   **Subject Line:** {content.subject_line}",
-    #         f"*   **Preview Text:** {content.preview_text}",
-    #         f"*   **Body:**\n\n    > {content.body.replace('  ', ' ').replace('\n', '\n> ')}",
-    #         f"*   **Call to Action:** {content.call_to_action}",
-    #         "*   **Key Benefits:**",
-    #         *[f"    *   {benefit}" for benefit in content.key_benefits],
-    #         f"*   **Target Market:** {content.target_market}",
-    #         f"*   **Campaign Dates:** {content.campaign_start_date.strftime('%Y-%m-%d') if content.campaign_start_date else 'Not set'} to {content.campaign_end_date.strftime('%Y-%m-%d') if content.campaign_end_date else 'Not set'}",
-    #     ]
-    #     return "\n".join(output)
+        content = self.email_content
+        output = [
+            "**Email Campaign: [Campaign Name/Description]**\n",
+            f"*   **Subject Line:** {content.subject_line}",
+            f"*   **Preview Text:** {content.preview_text}",
+            f"*   **Body:**\n\n    > {content.body.replace('  ', ' ').replace('\n', '\n> ')}",
+            f"*   **Call to Action:** {content.call_to_action}",
+            "*   **Key Benefits:**",
+            *[f"    *   {benefit}" for benefit in content.key_benefits],
+            f"*   **Target Market:** {content.target_market}",
+            f"*   **Campaign Dates:** {content.campaign_start_date.strftime('%Y-%m-%d') if content.campaign_start_date else 'Not set'} to {content.campaign_end_date.strftime('%Y-%m-%d') if content.campaign_end_date else 'Not set'}",
+        ]
+        return "\n".join(output)
 
-    # def render_marketing(self) -> str:
-    #     if not self.marketing_content:
-    #         return "No marketing content available."
+    def render_marketing(self) -> str:
+        if not self.marketing_content:
+            return "No marketing content available."
 
-    #     content = self.marketing_content
-    #     output = [
-    #        "**Marketing Content: [Campaign Name/Description]**\n",
-    #         f"*   **Headline:** {content.headline}",
-    #         f"*   **Body:**\n\n    > {content.body.replace('  ', ' ').replace('\n', '\n> ')}",
-    #         f"*   **Call to Action:** {content.call_to_action}",
-    #         "*   **Key Benefits:**",
-    #         *[f"    *   {benefit}" for benefit in content.key_benefits],
-    #         f"*   **Target Market:** {content.target_market}",
-    #         f"*   **Campaign Dates:** {content.campaign_start_date.strftime('%Y-%m-%d') if content.campaign_start_date else 'Not set'} to {content.campaign_end_date.strftime('%Y-%m-%d') if content.campaign_end_date else 'Not set'}",
-    #     ]
-    #     return "\n".join(output)
+        content = self.marketing_content
+        output = [
+           "**Marketing Content: [Campaign Name/Description]**\n",
+            f"*   **Headline:** {content.headline}",
+            f"*   **Body:**\n\n    > {content.body.replace('  ', ' ').replace('\n', '\n> ')}",
+            f"*   **Call to Action:** {content.call_to_action}",
+            "*   **Key Benefits:**",
+            *[f"    *   {benefit}" for benefit in content.key_benefits],
+            f"*   **Target Market:** {content.target_market}",
+            f"*   **Campaign Dates:** {content.campaign_start_date.strftime('%Y-%m-%d') if content.campaign_start_date else 'Not set'} to {content.campaign_end_date.strftime('%Y-%m-%d') if content.campaign_end_date else 'Not set'}",
+        ]
+        return "\n".join(output)
 
 def clear_chat_history():
     """Clears the chat history, both in Streamlit and the external ChatHistory."""
@@ -254,22 +254,40 @@ def initialize_rag_system(openai_api_key):
                 st.info("🔄 Loading knowledge base...")
                 try:
                     logger.info("Attempting to load documents from knowledge base")
-                    loader = TextLoader("/Users/vishalroy/Downloads/Pwani_Content_App/cleaned_cleaned_output.txt")
-                    documents = loader.load()
-                    logger.info(f"Loaded {len(documents)} documents from knowledge base")
+                    knowledge_base_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cleaned_cleaned_output.txt")
+                    if os.path.exists(knowledge_base_path):
+                        loader = TextLoader(knowledge_base_path)
+                        documents = loader.load()
+                        logger.info(f"Loaded {len(documents)} documents from knowledge base")
 
-                    if st.session_state.rag_system.ingest_documents(documents):
-                        st.success("✨ RAG system initialized successfully")
-                        logger.info("Documents ingested successfully into RAG system")
+                        if st.session_state.rag_system.ingest_documents(documents):
+                            st.success("✨ RAG system initialized successfully")
+                            logger.info("Documents ingested successfully into RAG system")
+                        else:
+                            # Try to load existing FAISS index as fallback
+                            st.session_state.rag_system._load_existing_index()
+                            if st.session_state.rag_system.vector_store is not None:
+                                st.info("✨ Using existing RAG knowledge base as fallback")
+                                logger.info("Loaded existing FAISS index as fallback")
+                            else:
+                                error_msg = "Failed to ingest documents and no existing index found"
+                                logger.warning(error_msg)
+                                st.warning(error_msg + " - will proceed without context")
                     else:
-                        error_msg = "Failed to ingest documents into RAG system"
-                        logger.warning(error_msg)
-                        st.warning(error_msg + " - will proceed without context")
+                        logger.error(f"Knowledge base file not found at {knowledge_base_path}")
+                        st.error("Knowledge base file not found")
+                        raise FileNotFoundError(f"Knowledge base file not found at {knowledge_base_path}")
                 except Exception as doc_error:
                     error_msg = f"Error loading documents: {str(doc_error)}"
                     logger.error(error_msg)
                     st.error(error_msg)
-                    raise
+                    # Try to load existing FAISS index as fallback
+                    st.session_state.rag_system._load_existing_index()
+                    if st.session_state.rag_system.vector_store is not None:
+                        st.info("✨ Using existing RAG knowledge base as fallback")
+                        logger.info("Loaded existing FAISS index as fallback")
+                    else:
+                        raise
             else:
                 st.info("✨ Using existing RAG knowledge base")
                 logger.info("Using cached RAG knowledge base")
