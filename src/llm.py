@@ -133,6 +133,15 @@ def generate_content_with_retries(llm, prompt, input_vars, output_format, use_se
  
                     try:
                         parsed_json = json.loads(json_str)
+                        # Add Pydantic validation
+                        try:
+                            return parser.parse(json.dumps(parsed_json))
+                        except Exception as ve:
+                            logging.warning(f"Validation error parsing {output_format} content: {ve}")
+                            # Fallback to text format with explanation
+                            text_response = f"I created a response but it couldn't be properly formatted as {output_format}. Here's the text version:\n\n{response_text}"
+                            logging.info(f"Falling back to text format: {text_response}")
+                            return text_response
                     except json.JSONDecodeError as je:
                         # Add detailed logging for debugging
                         logging.error(f"JSON decode error position {je.pos}: {je.msg}")

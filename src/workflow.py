@@ -1,4 +1,3 @@
-# workflow.py
 from langgraph.graph import StateGraph, END
 from llm import generate_content_with_retries
 import logging
@@ -7,7 +6,7 @@ from rag import RAGSystem
 def create_langraph_workflow(llm, prompt, input_vars, output_format, use_search_engine=False, search_engine_query=None):
     # Initialize RAG system once at workflow creation
     use_rag = input_vars.get('use_rag', True)
-    logging.info(f"Initializing workflow with RAG enabled: {use_rag}")
+    logging.info(f"Initializing workflow with RAG enabled: {use_rag} and output format: {output_format}")
     rag_system = RAGSystem(llm) if use_rag else None
 
     def generate_content(state):
@@ -42,21 +41,22 @@ def create_langraph_workflow(llm, prompt, input_vars, output_format, use_search_
                 except Exception as rag_error:
                     logging.warning(f"RAG query failed: {str(rag_error)}")
 
-            # Update state with RAG context
+            # Update state with RAG context and output format
             state['rag_context_str'] = rag_context_str if rag_context_str else ""
+            state['output_format'] = output_format  # Ensure output format is included in state
 
             logging.info(f"Generating content with state variables:\n{state}")
             output = generate_content_with_retries(
                 llm=llm,
                 prompt=prompt,
                 input_vars=state,
-                output_format=output_format,
+                output_format=output_format,  # Pass the output format
                 use_search_engine=use_search_engine,
                 search_engine_query=search_engine_query,
                 use_rag=bool(rag_system),
                 rag_system=rag_system
             )
-            logging.info(f"Generated content:\n{output}")
+            logging.info(f"Generated content with format {output_format}:\n{output}")
             return {"output": output}
         except Exception as e:
             error_msg = str(e)

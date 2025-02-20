@@ -74,14 +74,9 @@ class RAGSystem:
         self.index_path = self.config.index_path
         self.knowledge_base_path = self.config.knowledge_base_path
         
-        # Initialize Tavily search with enhanced configuration
+        # Initialize Tavily search with basic configuration
         try:
-            self.tavily_search = TavilySearchAPIWrapper(
-                k=5,  # Number of search results to return
-                include_domains=["pwanioil.com", "wikipedia.org", "business-standard.com"],  # Relevant domains
-                exclude_domains=[],  # Domains to exclude
-                search_depth="advanced"  # Use advanced search for better results
-            )
+            self.tavily_search = TavilySearchAPIWrapper()
             logger.info("Tavily search initialized successfully")
         except Exception as e:
             logger.warning(f"Failed to initialize Tavily search: {e}")

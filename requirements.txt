@@ -100,3 +100,4 @@ langchain-core
 langchain_openai
 faiss-cpu
 faker
+tavily-python

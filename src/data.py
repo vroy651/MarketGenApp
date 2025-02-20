@@ -19,6 +19,12 @@ class InstagramPost(BaseModel):
     caption: Optional[str] = Field(None, description="Instagram post caption")
     imageSuggestion: Optional[str] = Field(None, description="Image suggestion for post")
 
+    def dict(self):
+        return {
+            "caption": self.caption,
+            "imageSuggestion": self.imageSuggestion
+        }
+
 class InstagramReel(BaseModel):
     reelCaption: Optional[str] = Field(None, description="Instagram reel caption")
     reelSuggestion: Optional[str] = Field(None, description="Suggestion for reel content")

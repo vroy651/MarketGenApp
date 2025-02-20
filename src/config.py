@@ -62,14 +62,15 @@ def configure_streamlit_page():
 
 # Load API Keys
 def load_api_keys():
-    google_api_key = os.getenv("GOOGLE_API_KEY")
-    openai_api_key = os.getenv("OPENAI_API_KEY")
+    google_api_key = os.getenv("GOOGLE_API_KEY", "").strip()
+    openai_api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    tavily_api_key = os.getenv("TAVILY_API_KEY", "").strip()
 
     if not google_api_key and not openai_api_key:
         st.error("🔑 No API Keys found.  Please set either GOOGLE_API_KEY or OPENAI_API_KEY in your .env file")
         st.stop()
 
-    return google_api_key, openai_api_key
+    return google_api_key, openai_api_key  # Modified to return only two values
 
 # Custom CSS for better styling and branding
 def load_css():

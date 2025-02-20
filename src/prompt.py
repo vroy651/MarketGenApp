@@ -30,6 +30,50 @@ def create_prompt_template(
     search_engine_prompt_template: Optional[str] = None,
     search_results: Optional[str] = None
 ):
+    # Add format-specific instructions to the template
+    format_instructions = ""
+    if output_format == "Social Media":
+        format_instructions = """
+        RESPOND WITH JSON in the following format:
+        {
+            "facebook": {"post1": "content", "post2": "content", "imageSuggestion": "suggestion"},
+            "twitter": {"tweet1": "content", "tweet2": "content", "imageSuggestion": "suggestion"},
+            "instagram": {"post1": {"caption": "content", "imageSuggestion": "suggestion"}, 
+                         "post2": {"reelCaption": "content", "reelSuggestion": "suggestion"}, 
+                         "storySuggestion": "suggestion"}
+        }
+        """
+    elif output_format == "Email":
+        format_instructions = """
+        RESPOND WITH JSON in the following format:
+        {
+            "subject_line": "Subject line here",
+            "preview_text": "Preview text here",
+            "body": "Email body content here",
+            "call_to_action": "Call to action here",
+            "key_benefits": ["Benefit 1", "Benefit 2", "Benefit 3"],
+            "target_market": "Target market description",
+            "campaign_start_date": "2024-01-01",
+            "campaign_end_date": "2024-01-31"
+        }
+        """
+    elif output_format == "Marketing":
+        format_instructions = """
+        RESPOND WITH JSON in the following format:
+        {
+            "headline": "Headline here",
+            "body": "Marketing content body here",
+            "call_to_action": "Call to action here",
+            "key_benefits": ["Benefit 1", "Benefit 2", "Benefit 3"],
+            "target_market": "Target market description",
+            "campaign_start_date": "2024-01-01",
+            "campaign_end_date": "2024-01-31"
+        }
+        """
+    
+    # Update the instruction with format-specific requirements
+    if format_instructions:
+        instruction = f"{instruction}\n\n{format_instructions}"
     """
     Creates a prompt template with modular sections and proper optional field handling.
     Supports JSON output for Pydantic models and plain text output.

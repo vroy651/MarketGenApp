@@ -18,6 +18,7 @@ from src.chat_history import ChatHistory
 import random  # Added for typing simulation
 from faker import Faker  # For generating realistic-looking example data
 import os
+import json
 # Configure basic logging (this is fine as is)
 logging.basicConfig(
     level=logging.INFO,
@@ -423,8 +424,20 @@ def initialize_chatbot(model_name, temperature, openai_api_key, google_api_key, 
 
 
 
-def handle_chat_input(user_input, model_name, temperature, openai_api_key, google_api_key, output_format):
-    """Handles user input, generates responses, and simulates typing."""
+def handle_chat_input(user_input: str, model_name: str, temperature: float, openai_api_key: str, google_api_key: str, output_format: Optional[str] = None):
+    """Handles user input, generates responses, and simulates typing.
+
+    Args:
+        user_input: The user's input text.
+        model_name: The name of the language model to use.
+        temperature: The temperature for the language model.
+        openai_api_key: The OpenAI API key.
+        google_api_key: The Google API key.
+        output_format:  Optional.  Specifies desired output format ("Social Media", "Email", "Marketing").
+
+    Returns:
+        A ChatbotOutput object representing the response.  Can be an error message.
+    """
     try:
         context_updates = chat_history.get_full_context()
 
@@ -453,31 +466,73 @@ def handle_chat_input(user_input, model_name, temperature, openai_api_key, googl
         if "Fresh Fri" in user_input and "Hey Mamas" in user_input:
             response = """Hey Mamas! 👋 Level up your cooking game with Fresh Fri! ✨ We're talking *that* golden, crispy goodness, every single time. Fresh Fri is made with top-notch ingredients, and we're all about keeping things healthy and happy in your kitchen. Plus, we're doing our bit for the planet with responsible sourcing!🌍. Did someone say innovative cooking? We got you!. This cooking oil will make your meals taste better than ever. Get your 500L Fresh Fri *now* and taste the difference! #FreshFriLove #CookingWithLove #NairobiFoodie #MombasaEats #HealthyCooking #KenyanMums"""
             chatbot_output = ChatbotOutput.from_text(response)
-            
+
             with st.chat_message("assistant"):
                 st.markdown(response)
-                
+
             st.session_state.messages.append(chatbot_output.dict())
             chat_history.add_message("assistant", response, metadata={"context": context_updates})
             return chatbot_output
-            
+
         # For all other inputs, proceed with the normal flow
         with st.chat_message("assistant"):
             message_placeholder = st.empty()
-            full_response = ""
+            full_response = ""  # Initialize full_response
             with st.spinner("Thinking..."):
                 try:
-                    chatbot_output = None
+                    chatbot_output = None  # Initialize chatbot_output
                     # Determine if web search might be helpful
                     use_web_search = any(keyword in user_input.lower() for keyword in [
                         'latest', 'news', 'current', 'recent', 'update', 'trend',
                         'market', 'competitor', 'industry', 'development'
                     ])
 
+                   # Add format instructions to input based on selected output_format
+                    format_instructions = ""
+                    if output_format == "Social Media":
+                        format_instructions = """
+                        RESPOND WITH JSON in the following format:
+                        {
+                            "facebook": {"post1": "content", "post2": "content", "imageSuggestion": "suggestion"},
+                            "twitter": {"tweet1": "content", "tweet2": "content", "imageSuggestion": "suggestion"},
+                            "instagram": {"post1": {"caption": "content", "imageSuggestion": "suggestion"}, 
+                                        "post2": {"reelCaption": "content", "reelSuggestion": "suggestion"}, 
+                                        "storySuggestion": "suggestion"}
+                        }
+                        """
+                    elif output_format == "Email":
+                        format_instructions = """
+                        RESPOND WITH JSON in the following format:
+                        {
+                            "subject_line": "Subject line here",
+                            "preview_text": "Preview text here",
+                            "body": "Email body content here",
+                            "call_to_action": "Call to action here",
+                            "key_benefits": ["Benefit 1", "Benefit 2", "Benefit 3"],
+                            "target_market": "Target market description",
+                            "campaign_start_date": "2024-01-01",
+                            "campaign_end_date": "2024-01-31"
+                        }
+                        """
+                    elif output_format == "Marketing":
+                        format_instructions = """
+                        RESPOND WITH JSON in the following format:
+                        {
+                            "headline": "Headline here",
+                            "body": "Marketing content body here",
+                            "call_to_action": "Call to action here",
+                            "key_benefits": ["Benefit 1", "Benefit 2", "Benefit 3"],
+                            "target_market": "Target market description",
+                            "campaign_start_date": "2024-01-01",
+                            "campaign_end_date": "2024-01-31"
+                        }
+                        """
+                    
                     modified_input = f"""{user_input}
 
+                    {format_instructions if format_instructions else ""}
+                    Output format requested: {output_format}
                     """
-                    
                     # If web search might be helpful, use RAG with web search
                     if use_web_search and 'rag_system' in st.session_state:
                         try:
@@ -486,64 +541,83 @@ def handle_chat_input(user_input, model_name, temperature, openai_api_key, googl
                                 use_web_search=True
                             )
                             if rag_response:
-                                modified_input = f"Based on the latest information: {rag_response}\n\nUser question: {user_input}"
+                                modified_input = f"Based on the latest information: {rag_response}\n\nUser question: {user_input}\n\n{format_instructions if format_instructions else ''}\nOutput format requested: {output_format}"
+
                         except Exception as e:
                             logger.warning(f"Web search failed: {e}")
-
+                            # Fallback to normal input if web search fails.
 
                     context_aware_input = f"{modified_input}\n\nContext Updates: {context_updates}"
                     response = st.session_state.conversation.predict(input=context_aware_input)
-
                     chat_history.add_message("assistant", response, metadata={"context": context_updates})
 
-                    # Attempt to parse, but handle potential errors gracefully
-                    import json
+
+                    # Replace the existing parsing logic with this:
                     try:
-                        if isinstance(response, str):
+                            # Try to parse as JSON regardless of keywords in the prompt
                             try:
-                                response_dict = json.loads(response)
-                            except json.JSONDecodeError:
-                                response_dict = response
-                        else:
-                            response_dict = response
-
-                        if isinstance(response_dict, dict):
-                            if any(keyword in user_input.lower() for keyword in ["social media", "post", "tweet"]):
-                                social_media_data = SocialMediaContent(**response_dict)
-                                chatbot_output = ChatbotOutput(role="assistant", content_type="social_media", social_media_content=social_media_data)
-                            elif any(keyword in user_input.lower() for keyword in ["email", "mail"]):
-                                email_data = EmailContent(**response_dict)
-                                chatbot_output = ChatbotOutput(role="assistant", content_type="email", email_content=email_data)
-                            elif any(keyword in user_input.lower() for keyword in ["campaign", "marketing", "content"]):
-                                marketing_data = MarketingContent(**response_dict)
-                                chatbot_output = ChatbotOutput(role="assistant", content_type="marketing", marketing_content=marketing_data)
-                            else:
+                                if isinstance(response, str):
+                                    try:
+                                        response_dict = json.loads(response)
+                                    except json.JSONDecodeError:
+                                        # Look for JSON-like content within the string
+                                        import re
+                                        json_match = re.search(r'```json\s*(.*?)\s*```', response, re.DOTALL)
+                                        if json_match:
+                                            response_dict = json.loads(json_match.group(1))
+                                        else:
+                                            response_dict = None
+                                else:
+                                    response_dict = response
+                                    
+                                # Use the selected output format to determine parsing approach
+                                if isinstance(response_dict, dict):
+                                    if output_format == "Social Media":
+                                        try:
+                                            social_media_data = SocialMediaContent(**response_dict)
+                                            chatbot_output = ChatbotOutput(role="assistant", content_type="social_media", social_media_content=social_media_data)
+                                        except ValidationError:
+                                            chatbot_output = ChatbotOutput.from_text(response)
+                                    elif output_format == "Email":
+                                        try:
+                                            email_data = EmailContent(**response_dict)
+                                            chatbot_output = ChatbotOutput(role="assistant", content_type="email", email_content=email_data)
+                                        except ValidationError:
+                                            chatbot_output = ChatbotOutput.from_text(response)
+                                    elif output_format == "Marketing":
+                                        try:
+                                            marketing_data = MarketingContent(**response_dict)
+                                            chatbot_output = ChatbotOutput(role="assistant", content_type="marketing", marketing_content=marketing_data)
+                                        except ValidationError:
+                                            chatbot_output = ChatbotOutput.from_text(response)
+                                    else:
+                                        chatbot_output = ChatbotOutput.from_text(response)
+                                else:
+                                    chatbot_output = ChatbotOutput.from_text(response)
+                            except Exception as parse_error:
+                                logger.warning(f"Parsing error: {parse_error}")
                                 chatbot_output = ChatbotOutput.from_text(response)
-                        else:
-                            chatbot_output = ChatbotOutput.from_text(response)
-                    except (json.JSONDecodeError, ValueError, TypeError) as e:
-                        logger.debug(f"Content type parsing failed: {str(e)}")
-                        chatbot_output = ChatbotOutput.from_text(response)
                     except Exception as e:
-                        logger.exception(f"Unexpected error during parsing: {e}")
+                        logger.error(f"Error parsing response: {e}")
                         chatbot_output = ChatbotOutput.from_text(response)
-                        st.error("An unexpected error occurred during response processing.")
-
+                    # Save the chatbot output to session state
+                    st.session_state.messages.append(chatbot_output.dict())
 
                     # --- TYPING SIMULATION ---
-                    full_response = chatbot_output.render()  # Get full response
+                    full_response = chatbot_output.render()  # Get full response for typing
                     displayed_response = ""
                     for char in full_response:
                         displayed_response += char
                         time.sleep(random.uniform(0.02, 0.06))  # Simulate typing speed
                         message_placeholder.markdown(displayed_response + "▌")
-                    message_placeholder.markdown(displayed_response) # Remove cursor
+                    message_placeholder.markdown(displayed_response)  # Remove cursor
 
-                    if any(keyword in user_input.lower() for keyword in ["campaign", "marketing", "content"]):
-                        campaign_name = st.session_state.get("campaign_name", "Unnamed Campaign")  # Use .get()
-                        saved_file = save_content_to_file(chatbot_output.render(), campaign_name, "txt")
-                        if saved_file:
-                            st.info(f"💾 Content saved to: {saved_file}")
+                    if output_format == "Marketing" or any(keyword in user_input.lower() for keyword in ["campaign", "marketing", "content"]):
+                        campaign_name = st.session_state.get("campaign_name", "Unnamed Campaign")
+                        if campaign_name:  # Check if campaign_name is not None
+                            saved_file = save_content_to_file(chatbot_output.render(), campaign_name, "txt")
+                            if saved_file:
+                                st.info(f"💾 Content saved to: {saved_file}")
 
                 except Exception as e:
                     error_msg = str(e)
@@ -555,10 +629,17 @@ def handle_chat_input(user_input, model_name, temperature, openai_api_key, googl
                             st.warning(f"OpenAI authentication failed. Attempting to use {fallback_model}...")
                             initialize_chatbot(fallback_model, temperature, openai_api_key, google_api_key)
                             if st.session_state.get('conversation'):
-                                response = st.session_state.conversation.predict(input=user_input)
+                                # Use the modified input with the fallback model.
+                                response = st.session_state.conversation.predict(input=context_aware_input)
                                 chatbot_output = ChatbotOutput.from_text(response)
-                                full_response += chatbot_output.render_text()  # render_text
-                                message_placeholder.markdown(chatbot_output.render_text() + "▌")
+                                full_response = chatbot_output.render()  # Get full response
+                                displayed_response = ""
+                                for char in full_response:
+                                    displayed_response += char
+                                    time.sleep(random.uniform(0.02, 0.06))  # Simulate typing
+                                    message_placeholder.markdown(displayed_response + "▌")
+                                message_placeholder.markdown(displayed_response)
+
                             else:
                                 error_output = ChatbotOutput.from_text("Failed to fall back to alternative model. Please check your API keys.")
                                 st.error(error_output.render())
@@ -572,16 +653,14 @@ def handle_chat_input(user_input, model_name, temperature, openai_api_key, googl
                         st.error(error_output.render())
                         return error_output
 
-        st.session_state.messages.append(chatbot_output.dict())
+        st.session_state.messages.append(chatbot_output.dict())  # Append *after* typing
         return chatbot_output
-
 
     except Exception as e:
         logger.error(f"Error in chat input handling: {str(e)}")
         error_output = ChatbotOutput.from_text("An unexpected error occurred. Please try again.")
         st.error(error_output.render())
         return error_output
-
 def initialize_session_state():
     """Initialize session state variables"""
     if 'selected_model' not in st.session_state:
@@ -600,7 +679,6 @@ def display_model_selector():
     )
 
 def main():
-    configure_streamlit_page()
     load_css()
     google_api_key, openai_api_key = load_api_keys()
     initialize_rag_system(openai_api_key)
